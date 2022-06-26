@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+    <head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+		<meta content="utf-8" http-equiv="encoding" />
+        <script src="popup.js"></script>
+		<style>
+			div {
+				padding:2px;
+			}
+			body {
+				background-color:#FFF;
+				width:350px;
+			}
+			
+			/* The switch - the box around the slider */
+			.switch {
+			  position: relative;
+			  display: inline-block;
+			  width: 30px;
+			  height: 16px;
+			  margin: 2px;
+			}
+
+			.icon {
+				max-width:16px;
+				max-height:16px;
+				vertical-align: middle;
+			}
+			/* Hide default HTML checkbox */
+			.switch input {
+			  opacity: 0;
+			  width: 0;
+			  height: 0;
+			}
+
+			/* The slider */
+			.slider {
+			  position: absolute;
+			  cursor: pointer;
+			  top: 0;
+			  left: 0;
+			  right: 0;
+			  bottom: 0;
+			  background-color: #ccc;
+			  -webkit-transition: .4s;
+			  transition: .4s;
+			}
+
+			.slider:before {
+			  position: absolute;
+			  content: "";
+			  height: 14px;
+			  width: 14px;
+			  left: 1px;
+			  bottom: 1px;
+			  background-color: white;
+			  -webkit-transition: .4s;
+			  transition: .4s;
+			}
+
+			input:checked + .slider {
+			  background-color: #2196F3;
+			}
+			
+			input {
+				margin: 2px;
+			}
+
+			input:focus + .slider {
+			  box-shadow: 0 0 1px #2196F3;
+			}
+
+			input:checked + .slider:before {
+			  -webkit-transform: translateX(14px);
+			  -ms-transform: translateX(14px);
+			  transform: translateX(14px);
+			}
+
+			/* Rounded sliders */
+			.slider.round {
+			  border-radius: 16px;
+			}
+
+			.slider.round:before {
+			  border-radius: 50%;
+			}
+			h3 {
+				margin: 7px 0 3px 0;
+			}
+			button {
+				margin:0 0 10px 0;
+				padding: 2px;
+			}
+		</style>
+    </head>
+    <body>
+			
+            <button id="disableButton">Bật/Tắt</button> <- Nhấn nút này để BẬT hoặc TẮT.
+			
+			<div id="newVersion"></div>
+			
+			<h3>Liên kết trò chuyện trực tuyến</h3>
+			<div id="dock"></div>
+			<h3>Liên kết hiển thị tin nhắn ghim</h3>
+			<div id="overlay"></div>
+			<div id="settings"></div>
+			
+			
+			<h3>Tùy chỉnh liên kết trò chuyện trực tuyến</h3>
+			<label class="switch">
+			  <input type="checkbox" data-param1="lightmode">
+			  <span class="slider round"></span>
+			</label> Chế độ sáng
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="hidesource">
+			  <span class="slider round"></span>
+			</label> Ẩn biểu tượng nguồn <img src="youtube.png" class="icon" /><img src="twitch.png" class="icon" /><img src="facebook.png" class="icon" />
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="branded">
+			  <span class="slider round"></span>
+			</label> Hiển thị biểu tượng kênh
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="scale=2">
+			  <span class="slider round"></span>
+			</label> Phóng đại chế độ xem 🔍
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="notime">
+			  <span class="slider round"></span>
+			</label> Ẩn dấu thời gian 🕘
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="firstnames">
+			  <span class="slider round"></span>
+			</label> Chỉ hiển thị tên
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="compact">
+			  <span class="slider round"></span>
+			</label> Chế độ thu gọn
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="showtime=20000">
+			  <span class="slider round"></span>
+			</label> Ẩn bình luận sau 20 giây
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="limit=200">
+			  <span class="slider round"></span>
+			</label> Tăng lịch sử tin nhắn lên 200
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="hideshadow">
+			  <span class="slider round"></span>
+			</label> Loại bỏ bóng nền văn bản
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-setting="sentiment">
+			  <span class="slider round"></span>
+			</label> Lọc ra những tin nhắn có ác ý
+			<br />			
+			<label class="switch">
+			  <input type="checkbox" data-param1="noavatar">
+			  <span class="slider round"></span>
+			</label> Không hiển thị ảnh đại diện <img src="unknown.png" class="icon" />
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="nobadges">
+			  <span class="slider round"></span>
+			</label> Không có huy hiệu ✅
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="color">
+			  <span class="slider round"></span>
+			</label> Thêm Màu duy nhất vào tên nếu có
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param1="autoshow">
+			  <span class="slider round"></span>
+			</label> Tự động chọn tin nhắn mới (bỏ qua nếu cần)
+			<br />
+			<label class="textinput" style="display:block;padding-top:8px;">
+			</label> Danh sách các tên để xác định là máy chủ hoặc bot (được phân tách bằng dấu phẩy): 
+			<input type="text" data-textparam1="myname" style="width:95%;" placeholder="ie: name1,name 2,Name3" />
+			<br />
+			
+			
+			
+			
+			<h3>Tùy chỉnh liên kết tin nhắn ghim</h3>
+			<label class="switch">
+			  <input type="checkbox" data-param2="showtime=20000">
+			  <span class="slider round"></span>
+			</label> Ẩn lớp phủ sau 20 giây
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param2="showsource">
+			  <span class="slider round"></span>
+			</label> Hiển thị biểu tượng nguồn  <img src="youtube.png" class="icon" /><img src="twitch.png" class="icon" /><img src="facebook.png" class="icon" />
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param2="branded">
+			  <span class="slider round"></span>
+			</label> Hiển thị biểu tượng kênh
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param2="center">
+			  <span class="slider round"></span>
+			</label> Lớp phủ trung tâm
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param2="rounded=10">
+			  <span class="slider round"></span>
+			</label> Các cạnh tròn
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param2="noavatar">
+			  <span class="slider round"></span>
+			</label> Không hiển thị hình đại diện <img src="unknown.png" class="icon" />
+			<br />
+			<label class="switch">
+			  <input type="checkbox" data-param2="nobadges">
+			  <span class="slider round"></span>
+			</label> Không có huy hiệu  ✅
+			<br />
+			<input type="text" data-textsetting="comment_color" placeholder="#HEX value or color name" />
+			<label class="textinput">
+			</label> Màu chữ bình luận
+			<br />
+			<input type="text" data-textsetting="comment_background" placeholder="#HEX value or color name" />
+			<label class="textinput">
+			</label> Màu nền bình luận
+			<br />
+			<input type="text" data-textsetting="name_color" placeholder="#HEX value or color name"/>
+			<label class="textinput">
+			</label> Màu tên
+			<br />
+			<input type="text" data-textsetting="name_background" placeholder="#HEX value or color name"/>
+			<label class="textinput">
+			</label> Màu nền tên
+			<br />
+			
+			
+			<h3>Cài đặt chung / Tính năng</h3>
+			<label class="switch">
+			  <input type="checkbox" id="autohi" data-setting="autohi">
+			  <span class="slider round"></span>
+			</label> Tự động trả lời tin nhắn  "<b>hi</b>"
+			<br />
+			
+			<label class="switch">
+			  <input type="checkbox" id="midi" data-setting="midi">
+			  <span class="slider round"></span>
+			</label> Bật phím nóng MIDI 🎹
+			<br />
+			
+			<label class="switch" title="Just text is captured; no HTML, so no BTTV emotes, etc.">
+			  <input type="checkbox" id="firstsourceonly" data-setting="firstsourceonly">
+			  <span class="slider round"></span>
+			</label> Lọc bỏ các tin nhắn lặp lại trùng lặp
+			<br />
+			
+			<label class="switch" title="Just text is captured; no HTML, so no BTTV emotes, etc.">
+			  <input type="checkbox" id="textonlymode" data-setting="textonlymode">
+			  <span class="slider round"></span>
+			</label> Loại bỏ HTML khỏi tin nhắn
+			<br />
+			
+			<label class="switch">
+			  <input type="checkbox" id="joke" data-setting="joke">
+			  <span class="slider round"></span>
+			</label> Kể chuyện cười đi <b>!joke</b>
+			<button class="button" data-action="tellajoke" style="cursor:pointer;"> Kể một câu chuyện cười ngẫu nhiên ngay bây giờ</button>
+    
+    </body>
+</html>
