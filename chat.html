@@ -3,8 +3,8 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
 	<meta content="utf-8" http-equiv="encoding" />
-	<title>Social Stream - Dashboard</title>
-	<meta name="title" content="Social Stream - Dashboard" />
+	<title>Chat For Streamer - Trang tổng quan</title>
+	<meta name="title" content="Chat For Streamer - Trang tổng quan" />
 	<link rel="icon" href="./icons/favicon.ico" />
 	<style>
 	
@@ -424,23 +424,22 @@
 	<div id="output" class="output notcompactmode"></div>
 	<div id="pinned" class="output notcompactmode"></div>
 	<div id="menu">
-		<button id="next_in_queue" data-state="0" onclick="nextInQueue();" title="Hold CTRL when selecting messages to add them to the queue instead" class="hidden blue">Next in Queue</button>
-		<button id="clear_overlay" data-state="0" onclick="sendDataP2P(false);" title="Clear the featured chat overlay. (Not this dock)" class="red">Clear Current Overlay</button>
-		<button id="pause" data-state="0" onclick="pause(this);" title="Pause incoming chat messages">⏯︎ Pause</button>
-		<button id="autoshow" data-state="0" onclick="autoShow(this);" title="Auto-feature chat messages as they come in">Auto</button>
-		<button id="tts" data-state="0" onclick="speech = !speech; window.speechSynthesis.cancel(); this.classList.toggle('pressed');" title="Toggle whether to read out-loud incoming messages using text-to-speech">🔊</button>
-		<input id="filter_messages" onchange="filterMessages(this.value);" placeholder="Filter messages" type="text" />
-		<button id="hide_emoji" data-state="0" onclick="emoji(this);" title="Hide all emoji-only messages">🚫🙂</button>
-		<button id="only_donos" data-state="0" onclick="donos(this);" title="Show only messages that have donations/cheer">🤑</button>
-		<button id="say_hello" data-state="0" onclick="toggleChat();" title="Send a text message to all social endpoints">💬</button>
-		<input type="text" id="chatInput" style="display:none;" placeholder="Say something.." />
-		<button id="jumpto" data-state="0" onclick="jumptoBottom(this);" title="Jump to bottom">V</button>
+		<button id="next_in_queue" data-state="0" onclick="nextInQueue();" title="Giữ CTRL khi chọn bình luận để thêm chúng vào hàng đợi" class="hidden blue">Tiếp theo trong hàng đợi</button>
+		<button id="clear_overlay" data-state="0" onclick="sendDataP2P(false);" title="Xoá bình luận ghim hiện tại" class="red">Xóa ghim hiện tại</button>
+		<button id="pause" data-state="0" onclick="pause(this);" title="Tạm dừng hiển thị bình luận mới">⏯︎ Tạm dừng</button>
+		<button id="autoshow" data-state="0" onclick="autoShow(this);" title="Tự động ghim bình luận khi chúng đến">Tự động</button>
+		<input id="filter_messages" onchange="filterMessages(this.value);" placeholder="Lọc bình luận" type="text" />
+		<button id="hide_emoji" data-state="0" onclick="emoji(this);" title="Ẩn tất cả bình luận chỉ có icon">🚫🙂</button>
+		<button id="only_donos" data-state="0" onclick="donos(this);" title="Chỉ hiển thị các bình luận có đóng góp/cổ vũ">🤑</button>
+		<button id="say_hello" data-state="0" onclick="toggleChat();" title="Gửi bình luận văn bản đến tất cả các điểm cuối mạng xã hội">💬</button>
+		<input type="text" id="chatInput" style="display:none;" placeholder="Nội dung.." />
+		<button id="jumpto" data-state="0" onclick="jumptoBottom(this);" title="Nhảy xuống dưới cùng">V</button>
 	<div>
 	<script>
 	window.onerror = function backupErr(errorMsg, url=false, lineNumber=false) {
 		console.error(errorMsg);
 		console.error(lineNumber);
-		console.error("Unhandeled Error occured"); //or any message
+		console.error("Đã xảy ra lỗi chưa được xử lý"); //or any message
 		return false;
 	};
 	
@@ -503,9 +502,9 @@
 	} else if (urlParams.has("id")){
 		roomID = urlParams.get("id");
 	} else if (window.location.protocol=="file:"){
-		roomID = prompt("Enter your session ID here, or add it to the URL.");
+		roomID = prompt("Nhập ID phiên của bạn tại đây hoặc thêm nó vào URL.");
 	} else {
-		window.location.href = "https://github.com/steveseguin/live-chat-overlay#readme";
+		window.location.href = "https://khanhhy.com";
 	}
 	
 	if (urlParams.has("nodate") || urlParams.has("notimestamp") || urlParams.has("notime")){
@@ -569,9 +568,9 @@
 		document.getElementById("tts").dataset.state = 1;
 		document.getElementById("tts").classList.remove("hidden");
 		document.getElementById("tts").classList.add('pressed');
-		speech = urlParams.get("speech") || urlParams.get("speak") || urlParams.get("tts") || "en-US";
+		speech = urlParams.get("speech") || urlParams.get("speak") || urlParams.get("tts") || "vi-VN";
 		
-		if (speech.includes("en-")){
+		if (speech.includes("vi-")){
 			English = true;
 		}
 	}
@@ -622,7 +621,7 @@
 			if (this.readyState == 4 && this.status == 200) {
 				// success
 			} else {
-				console.error("there was an error sending to the API");
+				console.error("đã xảy ra lỗi khi gửi tới API");
 			}
 		  };
 		  xhttp.open(ajaxType, url, true); // async = true
@@ -759,10 +758,10 @@
 	try {
 		var script = document.createElement('script');
 		script.onload = function() {
-			console.log("Loaded personal actions");
+			console.log("Đã tải các hành động cá nhân");
 		}
 		script.onerror = function(){
-			console.log("no personal actions file found. skipping.");
+			console.log("không tìm thấy tệp hành động cá nhân. bỏ qua.");
 		}
 		script.src = "custom.js";
 		document.head.appendChild(script);
@@ -908,19 +907,19 @@
 	function nextInQueue(){ 
 		if (!selectedQueue.length){
 			sendDataP2P(false);
-			document.getElementById("next_in_queue").innerHTML = "Queue Empty";
-			document.getElementById("next_in_queue").title = "Clicking will clear any active overlay, since no next-message left in queue";
+			document.getElementById("next_in_queue").innerHTML = "Hàng đợi trống";
+			document.getElementById("next_in_queue").title = "Việc click vào sẽ xóa mọi bình luận ghim đang hoạt động, vì không còn bình luận tiếp theo nào trong hàng đợi";
 			return;
 		}
 		element = selectedQueue.shift();
 		selectedMessage(false, element);
 		element.classList.remove("queued");
 		if (!selectedQueue.length){
-			document.getElementById("next_in_queue").innerHTML = "Queue Empty";
-			document.getElementById("next_in_queue").title = "Clicking will clear the active overlay, since no next-message left in queue";
+			document.getElementById("next_in_queue").innerHTML = "Hàng đợi trống";
+			document.getElementById("next_in_queue").title = "Nhấp vào sẽ xoá bình luận ghim đang hoạt động, vì không còn bình luận tiếp theo nào trong hàng đợi";
 		} else {
-			document.getElementById("next_in_queue").innerHTML = "Next in Queue ("+selectedQueue.length+")";
-			document.getElementById("next_in_queue").title = "Hold CTRL when selecting messages to add them to the queue instead";
+			document.getElementById("next_in_queue").innerHTML = "Tiếp theo trong hàng đợi ("+selectedQueue.length+")";
+			document.getElementById("next_in_queue").title = "Giữ CTRL khi chọn bình luận để thêm chúng vào hàng đợi";
 		}
 	}
 	
@@ -947,7 +946,7 @@
 				for (var i = 0; i < selectedQueue.length; i++){ 
 					if ( selectedQueue[i] === element) { 
 						selectedQueue.splice(i, 1); 
-						document.getElementById("next_in_queue").innerHTML = "Next in Queue ("+selectedQueue.length+")";
+						document.getElementById("next_in_queue").innerHTML = "Tiếp theo trong hàng đợi ("+selectedQueue.length+")";
 						return;
 					}
 				}
@@ -956,7 +955,7 @@
 			selectedQueue.push(element);
 			element.classList.add("queued");
 			document.getElementById("next_in_queue").classList.remove("hidden");
-			document.getElementById("next_in_queue").innerHTML = "Next in Queue ("+selectedQueue.length+")";
+			document.getElementById("next_in_queue").innerHTML = "Tiếp theo trong hàng đợi ("+selectedQueue.length+")";
 			return;
 		} else if (event && (event.altKey)) {
 			if (element.classList.contains("pinned")){
@@ -964,7 +963,7 @@
 				element.remove();
 			} else {
 				element.classList.add("pinned");
-				element.title = "Alt + Click to remove pinned message";
+				element.title = "Alt + Click để xóa bình luận đã ghim";
 				document.getElementById("pinned").appendChild(element);
 			}
 			return;
@@ -1053,7 +1052,7 @@
 	};
 	
 	function fadeOutNode(node){
-		node.style.transition =  "all linear 0.5s";
+		node.style.transition =  "tất cả tuyến tính 0.5s";
 		node.style.height =  "0";
 		setTimeout(function(node){
 			node.remove();
@@ -1355,7 +1354,7 @@
 			}
 			
 			node.onmousedown = selectedMessage;
-			node.title = "Click to feature message instantly. CTRL + Click to add to the queue. Alt + Click to Pin.";
+			node.title = "Click để ghim bình luận ngay lập tức. CTRL + Click thêm vào hàng đợi. Alt + Click để đưa bình luận lên đầu.";
 
 			var imageElements = node.getElementsByTagName("img");
 			for (i = 0; i < imageElements.length; i++) {
@@ -1421,19 +1420,19 @@
 						var cc = data.chatname.toLowerCase().replace(/[^a-z0-9]+/gi, " ");
 						if (cc){
 							if (English){
-								speak(cc + " has donated " + data.hasDonation);
+								speak(cc + " đã ủng hộ " + data.hasDonation);
 							} else {
 								speak(cc + "! " + data.hasDonation);
 							}
 						} else {
 							if (English){
-								speak("Someone has donated " + data.hasDonation);
+								speak("Ai đó đã ủng hộ " + data.hasDonation);
 							} else {
 								speak(data.hasDonation);
 							}
 						}
 					} else if (English){
-						speak("Someone has donated " + data.hasDonation);
+						speak("Ai đó đã ủng hộ " + data.hasDonation);
 					} else {
 						speak(data.hasDonation);
 					}
@@ -1456,17 +1455,17 @@
 								var cc = data.chatname.toLowerCase().replace(/[^a-z0-9]+/gi, " ");
 								if (cc){
 									if (English){
-										speak(cc + " says! " +msgPlain.toLowerCase());
+										speak(cc + " nói! " +msgPlain.toLowerCase());
 									} else {
 										speak(cc + "! " +msgPlain.toLowerCase());
 									}
 								} else if (English){
-									speak("Someone says! " +msgPlain);
+									speak("Ai đó nói! " +msgPlain);
 								} else {
 									speak(msgPlain);
 								}
 							} else if (English){
-								speak("Someone says! " +msgPlain);
+								speak("Ai đó nói! " +msgPlain);
 							} else {
 								speak(msgPlain);
 							}
@@ -1508,7 +1507,7 @@
 	
 	function respondP2P(data=null, tid=false){
 		if (data===null){
-			data = prompt("Enter something to say to all of chat");
+			data = prompt("Nhập điều gì đó để chat với tất cả các cuộc trò chuyện");
 		}
 		if (!data){return;}
 		data = data.trim();
