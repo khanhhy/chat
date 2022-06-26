@@ -3,11 +3,9 @@ html {
 }
 
 body {
-  background: url(https://khanhhy.com/mc/img/bg.png) no-repeat center center fixed; 
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #a19ab5;
-  font-family: "Montserrat", sans-serif;
+background-color: #151622;
+    color: #8880A0;
+    font-family: "Montserrat", sans-serif;
 }
 
 h1 {
