@@ -3,7 +3,7 @@
   "description": "Công cụ mạnh mẽ để hiển thị, ghim bình luận trực tiếp trên Youtube, Facebook, Twitch, Tiktok, Instagram v.v.",
   "manifest_version": 2,
   "version": "1.0",
-  "homepage_url": "http://khanhhy.com/",
+  "homepage_url": "https://chat.khanhhy.com/",
   "icons": {
     "128": "icons/icon-128.png"
   },
