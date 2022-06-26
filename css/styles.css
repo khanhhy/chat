@@ -43,7 +43,7 @@ h3 {
 }
 
 .logo-fork p {
-  font-size: 2.0rem;
+  font-size: 2.2rem;
   font-weight: 700;
 }
 
@@ -271,6 +271,53 @@ h3 {
   }
 
   #FAQ .faq-item-host {
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+  }
+}
+
+#Features .faq-item-host {
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%);
+  background-color: #1d2030;
+  padding: 30px 30px 20px 30px;
+}
+
+.footer {
+  background-color: #1d2030;
+}
+
+@media all and (max-width: 460px) {
+  .logo-fork p {
+    font-size: 3.6vw;
+  }
+
+  #Features .faq-item-host {
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%);
+  }
+}
+@media all and (max-width: 575px) and (min-width: 461px) {
+  .logo-fork p {
+    font-size: 3.6vw;
+  }
+
+  #Features .faq-item-host {
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
+  }
+}
+@media all and (max-width: 767px) and (min-width: 576px) {
+  .logo-fork p {
+    font-size: 3.6vw;
+  }
+
+  #Features .faq-item-host {
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
+  }
+}
+@media all and (max-width: 991px) and (min-width: 768px) {
+  .carousel-description {
+    margin-top: 0;
+  }
+
+  #Features .faq-item-host {
     clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
   }
 }
