@@ -1,1047 +1,285 @@
-<html style="font-size: 10px;font-family: Roboto, Arial, sans-serif;">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-	<meta content="utf-8" http-equiv="encoding" />
-	<title>Chat For Streamer - Ghim bình luận</title>
-	<meta name="title" content="Chat For Streamer - Ghim bình luận" />
-	<link rel="icon" href="./icons/favicon.ico" />
-	<style>
+# Social Stream
+Consolidate your live social messaging streams
+
+- Supports live automated two-way chat messaging with Facebook, Youtube, Twitch, Zoom, and dozens more
+- Includes a "featured chat" overlay, with messages selectable via the dockable dashboard; auto or manual selection.
+- Supports bot-commands and automated chat responses, with custom logic supported via scriptable plugin file.
+- Text-to-speech support, along with many other niche features supported.
+- Multi-channel source-icon support, so you can differentiate between different streams and creators
+- No user login, API key, or permission needed to capture the chat messages from most sites and services.
+- Queuing of messages for later highlighting
+
+Social Stream makes use of VDO.Ninja's data-transport API to stream data securely between browser windows with extremely low latency and all for free!
+
+![image](https://user-images.githubusercontent.com/2575698/148505639-972eec38-7d8b-4bf3-9f15-2bd02182591e.png) ![image](https://user-images.githubusercontent.com/2575698/148505691-8a08e7b0-29e6-4eb5-9632-9dbcac50c204.png)
+
+
+### Supported sites:
+
+- twitch.tv - pop out chat to trigger
+- youtube live - pop out the chat to trigger (studio or guest view); or add &socialstream to the YT link
+- facebook live (guest view on web; you can pause the video tho)
+- zoom.us (web version)
+- owncast demo page (watch.owncast.online)
+- crowdcast.io
+- livestream.com
+- mixcloud.com (pop out chat)
+- discord.com (web version; requires toggle enabled via the settings as well)
+- ms teams (experimental support)
+- vimeo.com (pop out chat page; https://vimeo.com/live-chat/xxxxxxxxx/interaction/)
+- instagram live (instagram.com/*/live/)
+- tiktok live (tiktok.com/*/live)
+- webex live chat (not the pop out)
+- linkedin events comments
+- vdo.ninja (pop-out chat)
+- telegram (web.telegram.org in stream mode)
+- restream.io chat supported (https://chat.restream.io/chat)
+- amazon.com/live
+- slack (https://app.slack.com/)
+- rumble.com (no pop out; viewer page)
+- trovo.live (open the chat pop-up page; ie: https://trovo.live/chat/xxxxxx)
+- Whatsapp.com (**Experimental** support; missing avatars and uploaded media/photo support). https://web.whatsapp.com/
+- Dlive.tv  (pop-out chat)
+- Picarto.tv (pop-out chat; ie: https://picarto.tv/chatpopout/CHANNELNAMEHERE/public)
+- Mobcrush (this page: https://studio.mobcrush.com/chatpopup.html)
+
+More on request
+
+### Video walk-thru
+
+https://www.youtube.com/watch?v=X_11Np2JHNU
+
+### To install
+
+This extension should work with Chromium-based browser on systems that support webRTC. This includes Chrome, Edge, and Brave.
+
+Currently you must download, extract, and load the browser extension manually.  It is not available yet in the browser's web store.
+
+Link to download: https://github.com/steveseguin/social_stream/archive/refs/heads/main.zip
+
+Once extracted into a folder, you can go here to load it: chrome://extensions/
+
+![image](https://user-images.githubusercontent.com/2575698/142858940-62d88048-5254-4f27-be71-4d99ea5947ab.png)
+
+Ensure you have Developer Mode enabled; then you can just load the extension via the load unpacked button and selecting the folder you extracted the fiels to.
+
+![image](https://user-images.githubusercontent.com/2575698/142857907-80428c61-c192-4bff-a1dc-b1a674f9cc4a.png)
+
+You're ready to start using it! 
+
+Please note that you will need to manually update the extension to access newer versions; it currently does not auto update.
+
+#### Firefox support
+
+You have two ways to install the add-on for Firefox. 
+
+Please note, neither Firefox option supports two-way message responding, but the dock and featured chat overlay should work.  If you want to use the bot commands with auto-responding, please consider using a Chromium-based browser instead.
+
+##### First way:
+
+Download+extract or clone the SocialStream code somewhere.
+
+Go to `about:debugging#/runtime/this-firefox` in Firefox and select Load Temporary Add-on. 
+
+Select any file inside the SocialStream folder.
+
+You're done.  This is a temporary install and none of the settings made will be persist, including your session ID.
+
+You will still need to manually redo these steps to update when needed, but you can use the newest version of the code.
+
+##### Second way:
+
+Go to the release section of this repo and find a release that includes a Firefox XPI file. 
+
+https://github.com/steveseguin/social_stream/releases
+
+Download the XPI file and drag it into an Open Firefox window.
+
+Accept any install pop ups. Storage functions should work with this approach.
+
+You are good to go, but you will need to manually update when needed by recompleting these steps.
+
+Please note: XPI files are currently provided on request or with major updates; XPI file creation hasn't yet been automated. (TODO)
+
+### To use
+
+Open Twitch or Youtube "Pop out" chat; or just go to your Facebook Live chat while connected to Ethernet or WiFi. You must not minimize or close these windows, but they can be left in the background or moved to the side.
+
+Then, press the Social Stream chrome extension button and ENABLE streaming of chat data. (Red implies disabled. Green is enabled)
+
+![image](https://user-images.githubusercontent.com/2575698/142856707-0a6bc4bd-51b4-4cd0-9fa3-ef5a1adfcbf7.png)
+
+##### Please note:  If the Extension's icon is RED, then it means it is still off and wil not work.  You have to click "Enable extension", and the icon must change to the color green.
+
+Next, using the provided two links, you can manage the social stream of chat messages and view selected chat messages as overlays.
+
+![image](https://user-images.githubusercontent.com/2575698/142935393-4ca90418-a645-45e3-8e37-f4884e16457a.png)
+
+You can hold ALT on the keyboard to resize elements in OBS, allowing you to crop the chat stream if you want to hide aspects like the time or source icon.
+
+Clicking on a message will have it appear in the overlay link. You can press the clear button to hide it or use the &showtime=20000 URL option added to the overlay page to auto-hide it after 20-seconds (20,000 ms).
+
+![image](https://user-images.githubusercontent.com/2575698/142854951-fe1f34c9-0e24-495f-8bfe-a33ab69fa7cb.png)
+
+There is a &darkmode option, but the default is white, for the dock.
+
+![image](https://user-images.githubusercontent.com/2575698/142855585-45c11625-c01c-4cc0-bfe0-cde4aed5fc44.png)
+
+A good resolution for the overlay is either 1280x222 or 1920x220; you can specify this in the OBS browser source.  You can edit the style of the overlay using the OBS CSS style input text box.
+
+![image](https://user-images.githubusercontent.com/2575698/142855680-74f6055d-7b79-4e9a-ae7d-909c7f677a24.png)
+
+If using the automated chat response options, like auto-hi, you must ensure the Youtube/Twitch/Facebook chat input options are enabled and that you are able to send a chat message. Manually entering a chat message into the pop-out window or into the Facebook live chat area first can help ensure things are working are intended, else automated message may not be sent.
+
+ ##### Note: If things do not work,
+ 
+- Toggle the extension on and off, and reload the pop-out chat window.  Ideally the pop-out chat should be visible on screen, as even just a few pixels shown will allow the pop-out chat to work at full-power.  Chrome otherwise may throttle performance.
+- Open a new dock / overlay link if things still do not work, as the session ID may have changed.
+- Ensure that VDO.Ninja works with your browser, as if not, webRTC may be disabled and so this social stream extension will not work also.
+- If using Facebook live chat, please sure you are viewing the page as a "viewer", not as a publisher, and that you are connected to WiFi or Ethernet, and not mobile LTE/4G/5G.
+- The auto-responder requires you to be signed in to the social endpoint and that you have access to chat; ensure you accept any disclaimer and try issuing a test message first.
+
+### Customize
+
+There are quite a few toggles available to customize functions and styles, but these toggles often just apply URL parameters. You can as a result, just manually apply the parameters yourself, opening up more fine-grain control.  A list of some of the options are available below.
+
+To customize the dock, you can use the following options:
+
+- &lightmode (Enables the dark-mode for the chat stream)
+- &scale=2 (doubles size/resolution of all elements)
+- &notime (hides the date in the chat stream)
+- &hidesource (hides the youtube/twitch/fb icons from the stream)
+- &compact (Removes the spacing between name and message)
+- &autoshow (will auto-feature chat messages as they come into the dock at a rate of about 2 per 3 seconds)
+
+To customize the featured chat overlay, the following URL parameters are available
+
+- &showtime=20000 (auto-hides selected messages after 20s)
+- &showsource (shows the youtube/twitch/fb icons next to the name)
+- &fade (will have featured messages fade in, rather than pop up)
+- &swipe (will have featured messages swipe in from the left side)
+- &center (center featured messages)
+
+To customize the color, font-size and styling, you can edit the CSS, in either the OBS browser source style-sheet section, or by editing the and using the index.html file. See below:
+
+#### More advanced styling customizations
+
+To further customize the appearance of the overlay or dock, you can make CSS style changes via OBS browser source, without any coding.  
+
+![image](https://user-images.githubusercontent.com/2575698/153123085-4cf2923e-fce3-40bd-bd66-3ba14a6ab321.png)
+
+```
+body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; }
+
 :root {
-    /* basic colors */
-    --keyer-bg-color: #000; /* change for a chroma key if you want, beware profile avatars may key out */
-    --comment-color: #fff;
-    --comment-bg-color: #222; /* needs to be slightly above black to not get keyed out */
-    --comment-border-radius: 0px;
-    --comment-font-size: 40px;
-    --author-color: #222;
-    --author-bg-color: #ffa500;
-    --author-avatar-border-color: #ffa500;
-    --author-border-radius: 0px;
-    --author-avatar-border-size: 3px;
-    --author-avatar-size: 128px;
-    --author-font-size: 30px;
-	--author-left: 115px;
+     --author-bg-color: #FF0000;
+     --author-avatar-border-color: #FF0000;
+     --comment-color: #090;
+     --comment-bg-color: #DDD;
+     --comment-color: #FF0;
+     --comment-border-radius: 10px;
+     --author-border-radius: 10px;
+     --comment-font-size: 30px;
+     --author-color: blue;
+}
+```
+Sample CSS of which you can use to customize some of the basic styles. There's not much that you can't do via CSS in this way, but you can edit things further at a code-level if needed. Mac/Linux users may face issues with OBS not liking self-hosted versions of the index/dock file, but it's not an issue for the PC version.
+
+#### Auto responding / custom actions
+
+You can create your own custom auto-responding triggers or other actions by including a `custom.js` file. You don't need to host the index or dock file for this.
+
+Included in the code is the `custom_sample.js` file, which you can rename to custom.js to get started. Included in it is the `&auto1` trigger, which  auto responds "1" to any message that is also "1".  You need to add `&auto1` to the dock's URL to activate it.
+
+It's fairly easy to modify the `auto1` trigger to do whatever you want. You can also customize or removee the URL-parameter trigger needed to activate it.
+
+### Queuing messages
+
+If you hold CTRL (or cmd on mac), you can select messages in the dock that get added to a queue.  A button should appear in the top dock menu bar that will let you cycle through the queue, one at a time.  When pressing the Next in Queue button, messages from the queue will appear as featured chat messages in the overlay page.
+
+### Togglable Menu Commands 
+
+These are some generic auto-reply commands that can be toggled on/off via the extension's menu. They do not need a custom.js file to work
+
+- !joke  (tells a random geeky dad joke)
+- hi  (Welcomes anyone who says "hi" into chat)
+
+### Hotkey (MIDI / Streamlabs) support
+
+There's a toggle to enable MIDI hotkey support. This allows a user to issue commands to the extension when active, such as issue predefined chat messages to all social destinations.
+
+The hotkeys can be issued via MIDI, which can be applied to a Streamdeck also via a virtual MIDI device. The MIDI actions available currently include:
+
+Using Control Change MIDI Commands, on channel 1:
+
+- command 102, with value 1: Say "1" into all chats
+- command 102, with value 2: Say "LUL" into all chats
+- command 102, with value 3: Tell a random joke into all chats
+- command 102, with value 4: Clear all featured chat overlays
 	
-    /* donation/superchat specific */
-    --donation-color: #5a4211;
-    --donation-bg-color: #fff;
-    --donation-gradient-stop0: #BF953F;
-    --donation-gradient-stop1: #ede599;
-    --donation-gradient-stop2: #B38728;
-    --donation-label-color: #fff;
-    --donation-label-text: 'Donation';
-	--youtubedonation-label-text: 'SUPERCHAT';
-    --donation-shadow-color: #fff;
-	
-	--cheer-color: #5a4211;
-    --cheer-bg-color: #fff;
-    --cheer-gradient-stop0: #BF953F;
-    --cheer-gradient-stop1: #ede599;
-    --cheer-gradient-stop2: #B38728;
-    --cheer-label-color: #fff;
-    --cheer-label-text: 'Cheer';
-    --cheer-shadow-color: #fff;
-	
-	--image-content-max-height: 300px;
-    --shown-comment-bg-color: #555555;
-    --highlighted-comment-bg-color: #f0f07d;
-	--highlight-chat-left: 0px;
-	
-	--rounded-border-radius: 0px;
+![image](https://user-images.githubusercontent.com/2575698/144830051-20b11caa-ba63-4223-80e1-9315c479ebd6.png)
 
-    /*
-    LAYOUT
-    */
-    --comment-width: auto; /* go 100% for a full screen lower third style*/
-    --comment-padding: 20px 35px 20px 145px;
-    --comment-area-height: 70vh;
-    --comment-scale: 1;
-    --comment-area-size-offset: 0;
-    --comment-area-bottom: 10px;
-    /*
-    STYLE
-    */
-    --font-family: Avenir Next, Helvetica, Geneva, Verdana, Arial, sans-serif;
-    --highlight-chat-font-weight: 600;
-    --author-font-weight: 700;
-    --comment-font-weight: 600;
-	
-}
+The MIDI plugin can be found in the Streamdeck store pretty easily. If using Windows, you can find a virtual MIDI loopback device here: https://www.tobias-erichsen.de/software/loopmidi.html  There are some for macOS as well.
 
-body {
-    background-color: #0000;
-	position: relative;
-    left: 0px;
-	background-color: rgba(0, 0, 0, 0); 
-	margin: 0px auto; 
-	overflow: hidden; 
-}
+Feedback welcomed
 
-#output {
-	transform: translateY(30px);
-    transition: .5s all cubic-bezier(0.250, 0.250, 0.105, 1.2);
-	margin: 0 0 0 15px;
-}
-.fade {
-	animation: fade 0.5s;
-	webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5 ease-in-out;
-    -ms-transition: opacity 0.5 ease-in-out;
-    -o-transition: opacity 0.5 ease-in-out;
-    opacity: 0;
-}
-@keyframes fade { 
-  0% {opacity:1;}
-  100% {opacity:0;}
-}
+### Text to speech
 
-.dropout {
-	transform: translateY(340px) !important;
-	webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5 ease-in-out;
-    -ms-transition: opacity 0.5 ease-in-out;
-    -o-transition: opacity 0.5 ease-in-out;
-    opacity: 0;
-}
+Text messages can be converted to speech, assuming your system supports TTS.  On my Windows machine running Chrome/OBS, it works.  I have it set to English-US by default, but you can change the language to something else by editing the URL. ()
 
-.swipe {
-	transform: translateX(-100vw) !important;
-	webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5 ease-in-out;
-    -ms-transition: opacity 0.5 ease-in-out;
-    -o-transition: opacity 0.5 ease-in-out;
-    opacity: 0;
-}
+ie: `index.html?session=XXXXXX&speech=en-US` or `socialstream.ninja/?session=xxx&&speech=en-US`
 
-.ffz--inline{
-	display:inline-block;
-}
-.bttv-tooltip-wrapper {
-	display:inline-block;
-}
-.chat-image__container{
-	display:inline-block;
-}
-yt-live-chat-app {
-    margin-bottom: var(--comment-area-height);
-    height: calc(100vh - var(--comment-area-height)) !important;
-}
-tp-yt-paper-tooltip {
-	display:none;
-}
-.chat-line__message--emote-button{
-	display:inline-block;
-}
-.chat-line__message{
-	cursor: pointer;
-}
+You can get a list of support languages on your system by running `speechSynthesis.getVoices()` from the Chrome browser console on your system.  You can install additional ones fairly easily, if on Windows. See: https://support.microsoft.com/en-us/windows/download-language-pack-for-speech-24d06ef3-ca09-ddcc-70a0-63606fd16394
 
-div#message > div {
-    display: inline-block;
-}
+![image](https://user-images.githubusercontent.com/2575698/165753730-374498e7-7885-49ef-83ba-7fe2acde26ee.png)
 
-.tooltip{
-	display:none;
-}
-.tw-tooltip{
-	display:none;
-}
-#tooltip{
-	display:none;
-}
+The audio will play out the default system audio output device. This might be a problem if using OBS for capture, as you'll need to use a virtual audio cable to capture the audio output of the system output and route it back into OBS for capture.  See the related issue here: https://github.com/w3c/mediacapture-output/issues/102
 
-.sourcetype {
-	position: relative;
-    bottom: 44px;
-    max-width: 42px!important;
-    max-height: 42px!important;
-    left: 100px;
-	margin:0!important;
-}
+If loading the app in the Chrome/Edge/Firefox browser, you will need to "click" the web page first before audio will play. This isn't the case with OBS, but most browsers require the user interact with the website on some level before it will play audio.  Please keep this in mind when testing things.
 
-.noavatar-source {
-    bottom: -4px;
-    max-width: 50px!important;
-    max-height: 50px!important;
-    left: -20px;
-    margin: 0!important;
-    z-index: 20;
-}
-.sourceOffset{
-	left: 78px;
-    top: -39px;
-}
-.btn-clear {
-    position: absolute;
-    z-index: 99999;
-    bottom: calc(var(--comment-area-height) + 60px);
-    right: 20px;
-    font-size: 30px;
-    border: 1px #bbb solid;
-    border-radius: 4px;
-    color: #fff;
-    background: #444;
-}
-.highlighted-comment {
-    background-color: var(--highlighted-comment-bg-color) !important;
-}
-html[dark] .highlighted-comment #message.yt-live-chat-text-message-renderer {
-    color: black;
-}
-html[dark] .highlighted-comment:hover #message.yt-live-chat-text-message-renderer {
-    color: white;
-}
-html[dark] .highlighted-comment #author-name.yt-live-chat-author-chip {
-    color: #444;
-}
-html[dark] .highlighted-comment:hover #author-name.yt-live-chat-author-chip {
-    color: #DDD;
-}
-yt-live-chat-text-message-renderer:hover {
-    background-color: #eee !important;
-}
-html[dark] yt-live-chat-text-message-renderer:hover {
-    background-color: #444 !important;
-}
-yt-live-chat-text-message-renderer.shown-comment {
-    background-color: var(--shown-comment-bg-color) !important;
-    opacity: 0.4;
-}
-.shown-comment:hover {
-    opacity: 0.5;
-}
-.highlight-chat {
-    font-family: var(--font-family);
-    font-weight: var(--highlight-chat-font-weight);
-	position:relative;
-	left: var(--highlight-chat-left); 
-    box-sizing: border-box;
-    font-size: 30px;
-}
-.highlight-chat.preview {
-    border: 1px #ccc solid;
-}
-.hl-c-cont {
-    position: relative;
-    padding: 20px;
-    width: 100%;
-    margin: 0 auto;
-    
-	z-index:1;
-}
+There is a toggle in the dock to turn off and on the text-to-speech; turning it off whill automatically stop any audio playout. Still, be careful when using text-to-speech with the dock, as viewers can exploit it to have your system read out unwanted things on air.
 
-.hl-name {
-    position: absolute;
-    top: -20px;
-    left: var(--author-left);
-    font-weight: var(--author-font-weight);
-    background: var(--author-bg-color);
-    color: var(--author-color);
-    padding: 10px;
-    transform: rotate(-0deg);
-    z-index: 1;
-    border-radius: var(--author-border-radius);
-    font-size: var(--author-font-size);
-	white-space: nowrap;
-	z-index:2;
-	border-radius: var(--rounded-border-radius);
-}
-.hl-message {
-    position: absolute;
-    width: var(--comment-width);
-    font-weight: var(--comment-font-weight);
-    padding: var(--comment-padding);
-    color: var(--comment-color);
-    background-color: var(--comment-bg-color);
-    border-radius: var(--comment-border-radius);
-    font-size: var(--comment-font-size);
-	word-break: break-word;
-	z-index:1;
-	border-radius: var(--rounded-border-radius);
-}
-.hl-message-img {
-    position: absolute;
-    width: 63%;
-    font-weight: var(--comment-font-weight);
-    padding: var(--comment-padding);
-    color: var(--comment-color);
-    background-color: var(--comment-bg-color);
-    border-radius: var(--comment-border-radius);
-    font-size: var(--comment-font-size);
-	word-break: break-word;
-	z-index:1;
-}
+#### Installing different language-speech packs
 
-.hl-message:empty {
-	background-color:#0000;
-	width:200px;
-}
-.hl-name:empty {
-    background-color:#0000;
-    z-index:1;
-}
+By default, the list of support languages on your computer could be slim. To add more speech options for different langauges, you'll need to install them.
 
-.hl-message img {
-	max-width: 50px;
-    height: 45px;
-    vertical-align: sub;
-    z-index: 1;
-    object-fit: contain;
-    padding: 0 5px 1px 5px;
-}
-.hl-message a {
-    color: white;
-	z-index:1;
-}
-.hl-img {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    left: 0px;
-    width: var(--author-avatar-size);
-    height: var(--author-avatar-size);
-    background-color: var(--author-avatar-border-color);
-    border-radius: 50%;
-    border: 0;
-    padding: var(--author-avatar-border-size);
-	z-index:3;
-	
-}
-.hl-img img {
-    display: inline-block;
-    width:100%;
-    height:100%;
-    object-fit: cover;
-    overflow: hidden;
-    border-radius: 50%;
-    z-index: 1;
-	margin: auto;
-}
-.hl-imgContent {
-    max-height: 300px;
-    max-width: 40%;
-    display: inline-block;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    right: 0;
-    z-index: 0;
-	top: -18px;
-}
+see: https://support.microsoft.com/en-us/windows/download-language-pack-for-speech-24d06ef3-ca09-ddcc-70a0-63606fd16394 for details
 
-.hl-imgContent > img {
-    object-fit: scale-down;;
-    display: block;
-    margin: 0;
-    height: calc(100vh - 12px);
-	max-width:100%;
-	max-height: 300px;
-	min-height: calc(var(--author-avatar-size) + 30px);
-    
-}
-/* overlay a very faint white layer to bump the blacks above the luma key cutoff */
-.hl-img:after {
-    content: '';
-    display: block;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    position:absolute;
-    pointer-events: none;
-    z-index: 3;
-}
-.hl-img::after {
-    background: rgba(255,255,255,.04);
-    mix-blend-mode: lighten;
-}
+### Branded channel support
 
-.hl-badges {
-  display: inline-block;
-  margin-left: 5px;
-}
-.hl-badges {
-  max-height: 24px;
-}
-.hl-badges:empty {
-  background-color:#0000;
-}
-.hl-badge {
-    margin: 0 1px;
-    min-height: 18px;
-    max-width: 28px;
-	display:inline-block;
-}
-span.hl-badge{
-	width: 20px;
-	height: 18px;
-}
-.cheer {
-    position: absolute;
-    display: block;
-    text-align: center;
-    left: 70px;
-    top: 108px;
-    z-index: 3;
-    min-width: 128px;
-    border-radius: 10px;
-    padding: 30px 5px 0;
-    overflow: hidden;
-    background: linear-gradient(to right, var(--cheer-gradient-stop0), var(--cheer-gradient-stop1), var(--cheer-gradient-stop2));
-    color: var(--cheer-color);
-    transform: rotate(-5deg) translateX(-50%);
-}
-.cheer::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    font-size: 18px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.23);
-    border-radius: 10px 10px 0 0;
-    padding: 5px 0 0;
-    display: block;
-    content: var(--cheer-label-text);
-    color: var(--cheer-label-color);
-}
-.cheer::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: 0;
-    height: 200%;
-    width: 1px;
-    background-color: var(--cheer-bg-color);
-    box-shadow: 0 0 20px 20px var(--cheer-shadow-color);
-    opacity: 0.7;
-    transform: rotate(9deg) translate3D(250px, 0, 0);
-    animation: bitties 3s ease-in-out infinite;
-}
-@keyframes bitties {
-    from {
-        transform: rotate(9deg) translate3D(-250px, 0, 0);
-    }
-}
-.donation {
-    position: absolute;
-    display: block;
-    text-align: center;
-    left: 70px;
-    top: 108px;
-    z-index: 3;
-    min-width: 128px;
-    border-radius: 10px;
-    padding: 30px 5px 0;
-    overflow: hidden;
-    background: linear-gradient(to right, var(--donation-gradient-stop0), var(--donation-gradient-stop1), var(--donation-gradient-stop2));
-    color: var(--donation-color);
-    transform: rotate(-5deg) translateX(-50%);
-}
-.donation::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    font-size: 18px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.23);
-    border-radius: 10px 10px 0 0;
-    padding: 5px 0 0;
-    display: block;
-    content: var(--donation-label-text);
-    color: var(--donation-label-color);
-}
+There is a toggle that lets you show the source of the chat messages.
 
-.youtubedonation::before {
-    content: var(--youtubedonation-label-text);
-}
+- &branded will show the channel-icon; Youtube and Twitch channels supported.  Use with the dock or index file.
+- &showsource can be added to the index.file, to show the main site the source is from; ie: Youtube, Facebook.
 
-.membership {
-    padding: 10px 10px 5px 10px;
-	font-size: 20px !important;
-}
-
-.membership::before {
-    content: '';
-}
-.donation::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: 0;
-    height: 200%;
-    width: 1px;
-    background-color: var(--donation-bg-color);
-    box-shadow: 0 0 20px 20px var(--donation-shadow-color);
-    opacity: 0.7;
-    transform: rotate(9deg) translate3D(250px, 0, 0);
-    animation: superchat 3s ease-in-out infinite;
-}
-@keyframes superchat {
-    from {
-        transform: rotate(9deg) translate3D(-250px, 0, 0);
-    }
-}
-
-/* hide chat input to give more space to the chat */
-/*
-#input-panel, yt-live-chat-viewer-engagement-message-renderer {
-	display: none !important;
-}
-*/
-
-yt-live-chat-item-list-renderer {
-	margin-bottom: 20px;
-}
-
-yt-live-chat-text-message-renderer {
-    font-size: 24px !important;
-    line-height: 32px;
-}
+![image](https://user-images.githubusercontent.com/2575698/166864138-00cd1e1c-2149-473f-be8d-d07a8d400c07.png)
 
 
-yt-live-chat-text-message-renderer,
-yt-live-chat-paid-message-renderer,
-yt-live-chat-membership-item-renderer {
-    cursor: pointer;
-}
+### Known issues or solutions
 
-yt-live-chat-text-message-renderer[is-deleted],
-yt-live-chat-paid-message-renderer[is-deleted],
-yt-live-chat-membership-item-renderer[is-deleted] {
-    cursor: default;
-}
-	</style>
-</head>
-<body>
+If the auto responder doesn't work -- you see a blue bar, but nothing happens, there's a couple things to do.
+- make sure if using Youtube/Twitch that the pop out window is open
+- go to `chrome://apps` and remove the Youtube(s) apps that might appear.  You can remove them all really if none are required.
+- Make sure you have permission to post into the chat first -- sometimes you need to be a subscriber for example to send chat messages.
 
-	<div id="output" class="output"></div>
-	<script>
-	
-	function log(msg){
-	//	console.log(msg);
-	}
+![image](https://user-images.githubusercontent.com/2575698/146602513-e3b7e69c-19fa-4e58-b907-6f08b3f873e0.png)
 
-	function warnlog(msg, url=false, lineNumber=false){
-	//	console.warn(msg); 
-		if (lineNumber){
-	//		console.warn(lineNumber);
-		}
-	}
+- Try refreshing the chat page; sometimes refreshing the page will retrigger the code and bypass any errors. This is particularly try if you install or refresh the extension after the chat page has already been loaded.
 
-	function errorlog(msg, url=false, lineNumber=false){
-		console.error(msg);
-		if (lineNumber){
-			console.error(lineNumber);
-		}
-	}
-	window.onerror = function backupErr(errorMsg, url=false, lineNumber=false) {
-		errorlog(errorMsg);
-		errorlog(lineNumber);
-		errorlog("Đã xảy ra lỗi chưa được xử lý"); //or any message
-		return false;
-	};
+- Try to keep the chat window and dock page active and if possible, even partially visible on screen. If the windows are hidden or minimized, they may stop working. This is also true if the scroll bar for the chat window is not at the bottom; sometimes messages won't load unless you are seeing the newest messages.
 
-	
-	(function (w) {
-		w.URLSearchParams = w.URLSearchParams || function (searchString) {
-			var self = this;
-			self.searchString = searchString;
-			self.get = function (name) {
-				var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(self.searchString);
-				if (results == null) {
-					return null;
-				} else {
-					return decodeURI(results[1]) || 0;
-				}
-			};
-		};
+- If using OBS Studio on macOS or Linux, for some reason this extension will not work if hosted locally on your drive, so custom CSS needs to happen via the browser source style section. It works great on PC locally, and when hosted on socialstream.ninja, but locally on mac, it does not seem supported. This is an issue you'll need to take up with the OBS developers.
 
-	})(window);
-	var urlParams = new URLSearchParams(window.location.search);
-	
-	
-	var nextComment = null;
-	var roomID = "test";
-	
-	if (urlParams.has("session")){
-		roomID = urlParams.get("session");
-	} else if (urlParams.has("s")){
-		roomID = urlParams.get("s");
-	} else if (urlParams.has("id")){
-		roomID = urlParams.get("id");
-	} else if (window.location.protocol=="file:"){
-		roomID = prompt("Nhập ID phiên của bạn tại đây hoặc thêm nó vào URL.");
-	} else {
-		window.location.href = "https://khanhhy.com";
-	}
-	
-	var centering = false;
-	if (urlParams.has("center")){
-		centering = true;
-	}
-	
-	var customSource = false;
-	if (urlParams.has("branded")){
-		customSource = true;
-	}
-	
-	var timeoutDelay = 0;
-	if (urlParams.has("showtime")){
-		timeoutDelay = parseInt(urlParams.get("showtime")) || 20000;
-	}
-	
-	var borderRadius = 0;
-	if (urlParams.has("rounded")){
-		borderRadius = parseInt(urlParams.get("rounded")) || 10;
-		borderRadius += "px";
-		document.documentElement.style.setProperty("--rounded-border-radius", borderRadius);
-	}
-	
-	var timeoutTimer = null;
-	var showsource = false;
-	var showbadges = true;
-	
-	if (urlParams.has("hidebadges") || urlParams.has("nobadges")){
-		showbadges = false;
-	}
-	
-	if (urlParams.has("showsource")){
-		showsource = true;
-	} 
-	
-	var isIFrame = false;
-	if ( parent && (window.location !== window.parent.location )) {
-		isIFrame = true;
-	}
-	
-	
-	
-	var transitionType = "dropout";
-	if (urlParams.has("transition")){
-		transitionType = urlParams.get("transition").toLowerCase() || "fade";
-	} else if (urlParams.has("fade")){
-		transitionType = "fade";
-	} else if (urlParams.has("swipe")){
-		transitionType = "swipe";
-	}
-	
-	var avatar = true;
-	if (urlParams.has("noavatar")){
-		avatar = false;
-		document.documentElement.style.setProperty("--comment-padding", "20px 35px 20px 35px");
-		document.documentElement.style.setProperty("--author-left", "20px");
-	}
-	
-	
-	function realign(){
-		if (centering){
-			try{
-				var offsetLeft =  (parseInt(window.innerWidth) - parseInt(document.getElementById("message").clientWidth+20))/2;
-				offsetLeft -= 15;
-				document.documentElement.style.setProperty("--highlight-chat-left", offsetLeft+"px");
-			} catch(e){}
-		}
-		try {
-			var img = document.getElementById("img");
-			if (!img){return;}
-			var width = img.clientWidth + 214;
-			var message = document.getElementById("message"); 
-			if (message.innerText.length){
-				message.style.width = "calc(100vw - "+width+"px)";
-				document.getElementById("imgContent").style.right = "unset";
-				document.getElementById("imgContent").style.left = (document.getElementById("message").clientWidth + 19) + "px";
-			} else {
-				message.style.maxWidth = "300px";
-				document.getElementById("imgContent").style.right = 0;
-				document.getElementById("imgContent").style.left = (300) + "px";
-			}	
-		} catch(e){errorlog(e);}
-		
-	}
-	var speech = false;
-	var English = false;
-	
-	if (urlParams.has("speech") || urlParams.has("speak") || urlParams.has("tts")){
-		speech = urlParams.get("speech") || urlParams.get("speak") || urlParams.get("tts") || "en-US";
-		
-		if (speech.includes("en-")){
-			English = true;
-		}
-	}
-	
-	function speak(text){
-		if (!speech){return;}
-		if (!text){return;}
-		var speechInput = new SpeechSynthesisUtterance();
-		speechInput.lang = urlParams.get("speech") || urlParams.get("speak") || urlParams.get("tts") || "en-US";
-		speechInput.volume = 1;
-		speechInput.rate = 1;
-		speechInput.pitch = 1;
-		speechInput.text = text;
-		window.speechSynthesis.speak(speechInput);
-	}
-	
-	try {
-		window.onresize = realign;
-		if (parseInt(window.innerHeight)<500){
-			document.documentElement.style.setProperty("--image-content-max-height", window.innerHeight)
-		}
-	}catch(e){errorlog(e);}
-	
-	function RecvDataWindow(){
-		var iframe = document.createElement("iframe");
-		iframe.src = "https://vdo.socialstream.ninja/?password=false&exclude="+roomID+"&push&vd=0&ad=0&autostart&cleanoutput&room="+roomID; // exclude raw feed; we only want selected inputs.
-		
-		iframe.style.width = "0px";
-		iframe.style.height = "0px";
-		iframe.style.position = "fixed";
-		iframe.style.left = "-100px";
-		iframe.style.top = "-100px";
-		iframe.id = "frame1";
-		document.body.appendChild(iframe);
-		
-		var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
-		var eventer = window[eventMethod];
-		var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
-		
-		eventer(messageEvent, function (e) {
-		  if (e.source != iframe.contentWindow){return} // reject messages send from other iframes
-		  if ("dataReceived" in e.data){ // raw data 
-			if ("overlayNinja" in e.data.dataReceived){
-				processData( {contents : e.data.dataReceived.overlayNinja} );
-			}
-			
-		  }
-		});
-	}
-	RecvDataWindow();
-	
-	try {
-		var fallbackImage = new Image(); // preload it.
-		fallbackImage.src = "unknown.png";
-		fallbackImage.onerror = function(){
-			fallbackImage=false;
-		}
-	} catch(e){}
-	
-	function errorImage(ele){
-		if (ele.dataset.backupImage){
-			ele.src = ele.dataset.backupImage;
-		} else if (fallbackImage){
-			ele.src = "unknown.png";
-		} else {
-			ele.style.display = "none";
-		}
-	}
-	
-	var iframeTimeout = null;
-	
-	function processData(data){
-		
-		if (data.contents){
-			clearTimeout(timeoutTimer);
-			document.getElementById("output").classList.add(transitionType);
-			clearInterval(nextComment);
-			
-			try {
-				if (data.contents.chatimg && data.contents.chatimg.startsWith("http")){ // preload URL based
-					var tmpImage = new Image();
-					tmpImage.src = data.contents.chatimg;  // preload the image, since there is time for it.
-				}
-				if (data.contents.showType && data.contents.showsource){  // preload URL based
-					var tempShowType = new Image();
-					tempShowType.src = data.contents.showType + ".png";
-				}
-			} catch(e){warnlog(e);}
-			
-			if (isIFrame){
-				clearTimeout(iframeTimeout);
-				iframeTimeout = setTimeout(function(){parent.postMessage({resizeWindow:{height:"220px"}}, "*");},300);
-			}
-			
-			nextComment = setTimeout(function(data){
-			
-				console.log(data);
-			
-				var addImage = "";
-				if (data.contentimg){
-					 addImage = '<div id="imgContent" class="hl-imgContent"><img id="img" src="' + data.contentimg + '"  onerror="this.parent.style.display=\'none\'" onload="realign();"/></div>';
-				} else {
-					data.contentimg = "";
-				}
-				
-				if (!data.chatimg){
-					data.chatimg = "";
-				}
-				
-				<!-- try { -->
-					<!-- if (data.type && (data.type == "facebook") && data.userID ){ -->
-						<!-- var tmpImage2 = new Image(); -->
-						<!-- tmpImage2.src = "https://graph.facebook.com/"+data.userID+"/picture?type=large"; -->
-						<!-- tmpImage2.onload = function(){ -->
-							<!-- document.getElementById("img_"+data.chatname).src = tmpImage2.src; -->
-						<!-- }; -->
-					<!-- } -->
-				<!-- } catch(e){} -->
-				
-				var showType = "";
-				if (!data.type){
-					data.type= "none";
-				} else {
-					data.type = data.type.toString();
-					showType = data.type;
-				}
-				
-				var customSourceClass = "sourceOffset";
-				if (showType && showsource && avatar){
-					showType = '<img src="' + showType + '.png" class="icon sourcetype" data-icon-name="'+showType+'" onerror="this.style.display=\'none\'" />';
-				} else if (showType && showsource && !avatar){
-					showType = '<img src="' + showType + '.png" class="icon sourcetype noavatar-source" data-icon-name="'+showType+'" onerror="this.style.display=\'none\'" />';
-				} else {
-					customSourceClass = "";
-					showType = "";
-				}
-				
-				if (data.sourceImg && customSource && avatar){
-					showType += '<img src="' + data.sourceImg + '" class="icon sourcetype '+customSourceClass+'"  onerror="this.style.display=\'none\'" />';
-				} else if (data.sourceImg && customSource && !avatar){
-					showType += '<img src="' + + data.sourceImg + '" class="icon sourcetype '+customSourceClass+' noavatar-source" onerror="this.style.display=\'none\'" />';
-				}
-				
-				if (!data.chatname){
-					data.chatname = "";
-				} else {
-					data.chatname = data.chatname.toString();
-				}
-				
-				if (!data.hasMembership){
-					data.hasMembership = "";
-				} else {
-					data.hasMembership = data.hasMembership.toString();
-				}
-				
-				if (!data.chatmessage){
-					data.chatmessage = "";
-				} else {
-					data.chatmessage = data.chatmessage.toString();
-				}
-				
-				
-				if (data.hasDonation){
-					if (data.type === "twitch"){
-						data.hasDonation = '<div class="cheer">' + data.hasDonation + '</div>';
-					} else if (data.type === "youtube"){
-						data.hasDonation = '<div class="donation youtubedonation">' + data.hasDonation + '</div>';
-					} else {
-						data.hasDonation = '<div class="donation">' + data.hasDonation + '</div>';
-					}
-					
-				} else {
-					data.hasDonation = "";
-				}
-				
-				var styleOverride = "";
-				if (data.backgroundColor){
-					styleOverride = data.backgroundColor;
-				}
-				if (data.textColor){
-					styleOverride += " " + data.textColor;
-				}
-				if (styleOverride){
-					styleOverride = 'style="'+styleOverride+'"';
-				}
-				
-				var styleOverrideName = "";
-				if (data.backgroundNameColor){
-					styleOverrideName = data.backgroundNameColor;
-				}
-				if (data.textNameColor){
-					styleOverrideName += " " + data.textNameColor;
-				}
-				if (styleOverrideName){
-					styleOverrideName = 'style="'+styleOverrideName+'"';
-				}
-				
-				var avatarImg = "";
-				if (avatar){
-					if (data.backupChatimg){
-						avatarImg = '<div class="hl-img" '+styleOverrideName+'><img id="img_'+data.chatname+'" src="' + data.chatimg + '" class="hl-profile-pic" data-backup-image="'+data.backupChatimg+'"onerror="errorImage(this);">'+showType+'</div>';
-					} else {
-						avatarImg = '<div class="hl-img" '+styleOverrideName+'><img id="img_'+data.chatname+'" src="' + data.chatimg + '" class="hl-profile-pic" onerror="errorImage(this);">'+showType+'</div>';
-					}
-				} else {
-					avatarImg = showType;
-				}
-				
-				
-				//var nameColor = "";
-				//if (data.nameColor && colorized){
-				//	nameColor = "style='color:"+data.nameColor+";'";
-				//}
-			
-				
-				var chatbadges = "";
-				if (data.chatbadges && showbadges){
-					if (data.chatbadges.length){
-						console.log(data.chatbadges);
-					}
-					data.chatbadges.forEach(badge=>{
-						if (typeof badge == "object"){
-							if (badge.type && (badge.type=="img") && badge.src){
-								chatbadges += "<img class='hl-badge' src='"+badge.src+"' />";
-							} else if (badge.type && (badge.type=="svg") && badge.html){
-								chatbadges += "<span class='hl-badge'>"+badge.html+"</span>";
-							}
-						} else {
-							chatbadges += "<img class='hl-badge' src='"+badge+"' />";
-						}
-					});
-				}
-				
-				document.getElementById("output").innerHTML = '<div class="hl-c-cont highlight-chat" data-source-type="'+data.type+'">'
-					 + '<div class="hl-name" '+styleOverrideName+' id="nameDIV">' + data.chatname
-					 +   '<div class="hl-badges" >' + chatbadges + '</div>'
-					 + '</div>'
-					 + '<div id="message" '+styleOverride+' class="hl-message" >' + data.chatmessage + '</div>'
-					 + avatarImg
-					 + addImage
-					 + data.hasDonation + data.hasMembership +'</div>';
-				
-				
-				if (!data.chatname && !data.chatbadges){
-					document.getElementById("nameDIV").style.display = "none";
-				}
+### Support
 
-				var fontsize = "";
-				var limitchar = parseInt(window.innerWidth/6.5);
-				
-				if (document.getElementById("message").innerText.length>limitchar){
-					fontsize = (parseInt((limitchar*100)/document.getElementById("message").innerText.length));
-					if (fontsize<43){fontsize=43;}
-					document.getElementById("message").style = data.backgroundColor +' '+ data.textColor+'; font-size: '+fontsize+'%;';
-				}
-				
-				
-				
-				if (centering){
-					try{
-						var offsetLeft =  (parseInt(window.innerWidth) - parseInt(document.getElementById("message").clientWidth+20))/2; // 20 and 15 are the offsets/margins used. might need to update if changed.
-						offsetLeft -= 15;
-						document.documentElement.style.setProperty("--highlight-chat-left", offsetLeft+"px");
-					} catch(e){}
-				}
-				
-				
-				for (i = 0; i < document.getElementsByTagName("img").length; i++) {
-					try {
-						if ((data.type == "twitch") && document.getElementsByTagName("img")[i].src.includes("/light/")){ // dark mode
-							document.getElementsByTagName("img")[i].srcBackup = document.getElementsByTagName("img")[i].src;
-							document.getElementsByTagName("img")[i].src = document.getElementsByTagName("img")[i].src.replaceAll("/light/","/dark/");
-						}
-					
-						if (document.getElementsByTagName("img")[i].onerror){continue;} // already has a catch
-						document.getElementsByTagName("img")[i].onerror = function(){
-							if (this.srcBackup){
-								this.src = this.srcBackup;
-								this.srcBackup = null;
-								delete this.srcBackup;
-							} else if (this.alt.length!==2){
-								this.style.display='none';
-							} else {
-								this.outerHTML = this.alt;
-							}
-						}
-					} catch(e){}
-				}
-				document.getElementById("output").classList.remove(transitionType);
-				
-				
-				if (speech){
-				
-					if (data.hasDonation){
-						if (data.chatname){
-							var cc = data.chatname.toLowerCase().replace(/[^a-z0-9]+/gi, " ");
-							if (cc){
-								if (English){
-									speak(cc + " đã ủng hộ " + data.hasDonation);
-								} else {
-									speak(cc + "! " + data.hasDonation);
-								}
-							} else {
-								if (English){
-									speak("Ai đó đã ủng hộ " + data.hasDonation);
-								} else {
-									speak(data.hasDonation);
-								}
-							}
-						} else if (English){
-							speak("Ai đó đã ủng hộ " + data.hasDonation);
-						} else {
-							speak(data.hasDonation);
-						}
-					}
-				
-					var msgPlain = document.getElementById("message"); // text only
-					if (msgPlain){
-						msgPlain = msgPlain.innerText.trim();
-						msgPlain = msgPlain.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
-						msgPlain = msgPlain.replaceAll('_', ' ');
-						msgPlain = msgPlain.replaceAll('@', ' ');
-						msgPlain = msgPlain.replace(/catJAM/ig,"");
-						
-						if (data.hasDonation && (msgPlain==parseInt(msgPlain))){
-							// this is a donation that we already read out
-						} else {
-							if (data.chatname){
-								var cc = data.chatname.toLowerCase().replace(/[^a-z0-9]+/gi, " ");
-								if (cc){
-									if (English){
-										speak(cc + " nói! " +msgPlain.toLowerCase());
-									} else {
-										speak(cc + "! " +msgPlain.toLowerCase());
-									}
-								} else if (English){
-									speak("Ai đó nói! " +msgPlain);
-								} else {
-									speak(msgPlain);
-								}
-							} else if (English){
-								speak("Ai đó nói! " +msgPlain);
-							} else {
-								speak(msgPlain);
-							}
-						}
-					}
-				}
-				
-				if (timeoutDelay){
-					clearTimeout(timeoutTimer);
-					timeoutTimer = setTimeout(function(){
-						document.getElementById("output").classList.add(transitionType);
-						clearInterval(nextComment);
-					}, timeoutDelay);
-				}
-				
-			},500, data.contents);
-		} else {
-			if ("contents" in data){
-				clearTimeout(timeoutTimer);
-				document.getElementById("output").classList.add(transitionType);
-				clearInterval(nextComment);
-				
-				if (isIFrame){
-					clearTimeout(iframeTimeout);
-					iframeTimeout = setTimeout(function(){parent.postMessage({resizeWindow:{height:"0px"}}, "*");},300);
-				}
-			} 
-		}
-	
-	}
-	
-	</script>
-	</body>
-</html>
+You can find me on discord over at https://discord.vdo.ninja or https://discord.gg/7U4ERn9y , offering free support in channel #chat-overlay-support 
+
+Feedback and feature requests are welcomed
+
+### Icons
+
+I do not claim rights of all the icons distributed. While I made some of the icons, trademarks and logos of third party companies/services are the rights of those respectivitive entities. Use them according to the terms that those entities may offer them under.
+
+### Credit
+
+This project contains inspiration by my other project, chat.overlay.ninja, which was a derivation of another Youtube-specific chat widget, which was inspired by the stylings of other featured-chat code sample, of which that was also inspired by existing chat overlay designs. May the many new innovations of this project inspire the future foundation of other awesome projects as well.
