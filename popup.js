@@ -60,10 +60,10 @@ function update(response){
 		}
 		if ('streamID' in response){
 			//document.getElementById("version").innerHTML = "Stream ID is : "+response.streamID;
-			document.getElementById("dock").rawURL = "https://chat.khanhhy.com/chat.html?session="+response.streamID;
-			document.getElementById("dock").innerHTML = "<a target='_blank' id='docklink' href='https://chat.khanhhy.com/chat.html?session="+response.streamID+"'>https://chat.khanhhy.com/chat.html?session="+response.streamID+"</a>";
-			document.getElementById("overlay").innerHTML = "<a target='_blank' id='overlaylink' href='https://chat.khanhhy.com/ghim.html?session="+response.streamID+"'>https://chat.khanhhy.com/ghim.html?session="+response.streamID+"</a>";
-			document.getElementById("overlay").rawURL = "https://chat.khanhhy.com/ghim.html?session="+response.streamID;
+			document.getElementById("dock").rawURL = "https://chat.khanhhy.com/data/khanhhy/chat.html?session="+response.streamID;
+			document.getElementById("dock").innerHTML = "<a target='_blank' id='docklink' href='https://chat.khanhhy.com/data/khanhhy/chat.html?session="+response.streamID+"'>https://chat.khanhhy.com/data/khanhhy/chat.html?session="+response.streamID+"</a>";
+			document.getElementById("overlay").innerHTML = "<a target='_blank' id='overlaylink' href='https://chat.khanhhy.com/data/khanhhy/ghim.html?session="+response.streamID+"'>https://chat.khanhhy.com/data/khanhhy/ghim.html?session="+response.streamID+"</a>";
+			document.getElementById("overlay").rawURL = "https://chat.khanhhy.com/data/khanhhy/ghim.html?session="+response.streamID;
 		}
 		if ('settings' in response){
 			for (var key in response.settings){
